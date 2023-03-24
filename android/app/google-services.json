@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "842196816948",
+    "project_id": "the-fullbelly-project",
+    "storage_bucket": "the-fullbelly-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:842196816948:android:7885e003e1ee326b3de661",
+        "android_client_info": {
+          "package_name": "com.example.thefullbellyproject_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "842196816948-iffqd3hvcua0mo58e8pr3cs0ok3ljfa2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWyXT9XeFo5ux3EApiPxJuc8qbh82yvDM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "842196816948-iffqd3hvcua0mo58e8pr3cs0ok3ljfa2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
