@@ -37,9 +37,8 @@ class SignUpDonorPageState extends State<SignUpDonorPage> {
         'type': 'donor',
       });
       await FirebaseFirestore.instance.collection('donors').doc(user.uid).set({
-        'name': user.displayName,
-        'email': user.email,
-        'compWorks': [],
+        'user': userCredential.user!.uid,
+        'Works': [],
       });
       _handleSignUpSuccess();
     } catch (e) {
@@ -68,11 +67,8 @@ class SignUpDonorPageState extends State<SignUpDonorPage> {
           .collection('donors')
           .doc(userCredential.user!.uid)
           .set({
-        'name': _nameController.text,
-        'username': _usernameController.text,
-        'email': _emailController.text,
-        'location': _locationController.text,
-        'compWorks': [],
+        'user': userCredential.user!.uid,
+        'Works': [],
       });
       _handleSignUpSuccess();
     } catch (e) {

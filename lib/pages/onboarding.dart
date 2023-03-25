@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'signupngo.dart';
 import 'signupdonor.dart';
+import 'signin.dart';
 
 class OnboardingPage extends StatefulWidget {
   static const String id = 'onboarding';
@@ -63,6 +64,11 @@ class OnboardingPageState extends State<OnboardingPage> {
             ElevatedButton(
               onPressed: () => _handleRoleSelection('ngo_agent'),
               child: const Text('NGO Agent'),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () => {Navigator.pushNamed(context, SignInPage.id)},
+              child: const Text('Already an user? Sign In'),
             ),
           ],
         ),
