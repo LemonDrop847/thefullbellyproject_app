@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:thefullbellyproject_app/pages/onboarding.dart';
+import 'profile.dart';
 
 class SignUpNGOPage extends StatefulWidget {
   static const String id = 'signUpNgo';
@@ -37,8 +37,7 @@ class SignUpNGOPageState extends State<SignUpNGOPage> {
         'type': 'ngo',
       });
       await FirebaseFirestore.instance.collection('ngos').doc(user.uid).set({
-        'name': user.displayName,
-        'email': user.email,
+        'user': userCredential.user!.uid,
         'compWorks': [],
       });
       _handleSignUpSuccess();
@@ -68,10 +67,7 @@ class SignUpNGOPageState extends State<SignUpNGOPage> {
           .collection('ngos')
           .doc(userCredential.user!.uid)
           .set({
-        'name': _nameController.text,
-        'username': _usernameController.text,
-        'email': _emailController.text,
-        'location': _locationController.text,
+        'user': userCredential.user!.uid,
         'compWorks': [],
       });
       _handleSignUpSuccess();
@@ -81,7 +77,7 @@ class SignUpNGOPageState extends State<SignUpNGOPage> {
   }
 
   void _handleSignUpSuccess() {
-    Navigator.pushNamed(context, OnboardingPage.id);
+    Navigator.pushNamed(context, ProfilePage.id);
   }
 
   @override
