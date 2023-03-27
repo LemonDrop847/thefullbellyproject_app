@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:thefullbellyproject_app/pages/dashboard.dart';
+import 'package:thefullbellyproject_app/pages/donate.dart';
 import 'editprofile.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -27,6 +29,12 @@ class _ProfilePageState extends State<ProfilePage> {
       _userData = userData.data()!;
       print(_userData);
     });
+  }
+
+  void _pageNav() {
+    (_userData['type'] == 'donor')
+        ? Navigator.pushNamed(context, DonatePage.id)
+        : Navigator.pushNamed(context, DashboardPage.id);
   }
 
   @override
@@ -85,6 +93,12 @@ class _ProfilePageState extends State<ProfilePage> {
             ListTile(
               leading: const Icon(Icons.phone),
               title: Text(_userData['phone']!),
+            ),
+            FloatingActionButton(
+              onPressed: _pageNav,
+              child: (_userData['type'] == 'donor')
+                  ? const Icon(Icons.add)
+                  : const Icon(Icons.description),
             ),
           ],
         ),
