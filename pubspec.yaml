@@ -36,6 +36,9 @@ dependencies:
   firebase_core: ^2.8.0
   google_sign_in: ^6.0.2
   shared_preferences: ^2.0.20
+  firebase_storage: ^11.0.16
+  image_picker: ^0.8.7
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   # The "flutter_lints" package below contains a set of recommended lints to

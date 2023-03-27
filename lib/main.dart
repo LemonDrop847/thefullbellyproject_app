@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:thefullbellyproject_app/pages/dashboard.dart';
+import 'package:thefullbellyproject_app/pages/donate.dart';
 import 'package:thefullbellyproject_app/pages/editprofile.dart';
 import 'package:thefullbellyproject_app/pages/onboarding.dart';
 import 'package:thefullbellyproject_app/pages/profile.dart';
@@ -31,6 +33,8 @@ class MyApp extends StatelessWidget {
         SignInPage.id: (context) => SignInPage(),
         ProfilePage.id: (context) => ProfilePage(),
         EditProfilePage.id: (context) => EditProfilePage(),
+        DonatePage.id: (context) => DonatePage(),
+        DashboardPage.id: (context) => DashboardPage(),
       },
     );
   }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:thefullbellyproject_app/pages/onboarding.dart';
+import 'package:thefullbellyproject_app/pages/profile.dart';
 
 class SignUpDonorPage extends StatefulWidget {
   static const String id = 'signUpDonor';
@@ -18,6 +18,7 @@ class SignUpDonorPageState extends State<SignUpDonorPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
 
   void _handleGoogleSignIn() async {
     try {
@@ -61,6 +62,7 @@ class SignUpDonorPageState extends State<SignUpDonorPage> {
         'username': _usernameController.text,
         'email': _emailController.text,
         'location': _locationController.text,
+        'phone': _phoneController.text,
         'type': 'donor',
       });
       await FirebaseFirestore.instance
@@ -77,7 +79,7 @@ class SignUpDonorPageState extends State<SignUpDonorPage> {
   }
 
   void _handleSignUpSuccess() {
-    Navigator.pushNamed(context, OnboardingPage.id);
+    Navigator.pushNamed(context, ProfilePage.id);
   }
 
   @override
@@ -102,6 +104,14 @@ class SignUpDonorPageState extends State<SignUpDonorPage> {
               controller: _nameController,
               decoration: const InputDecoration(
                 labelText: 'Name',
+              ),
+            ),
+            const SizedBox(height: 10),
+            TextField(
+              controller: _phoneController,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                labelText: 'Phone Number',
               ),
             ),
             const SizedBox(height: 10),

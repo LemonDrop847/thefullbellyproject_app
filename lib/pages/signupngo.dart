@@ -18,6 +18,7 @@ class SignUpNGOPageState extends State<SignUpNGOPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
 
   void _handleGoogleSignIn() async {
     try {
@@ -61,6 +62,7 @@ class SignUpNGOPageState extends State<SignUpNGOPage> {
         'username': _usernameController.text,
         'email': _emailController.text,
         'location': _locationController.text,
+        'phone': _phoneController.text,
         'type': 'ngo',
       });
       await FirebaseFirestore.instance
@@ -102,6 +104,14 @@ class SignUpNGOPageState extends State<SignUpNGOPage> {
               controller: _nameController,
               decoration: const InputDecoration(
                 labelText: 'Name',
+              ),
+            ),
+            const SizedBox(height: 10),
+            TextField(
+              controller: _phoneController,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                labelText: 'Phone Number',
               ),
             ),
             const SizedBox(height: 10),
