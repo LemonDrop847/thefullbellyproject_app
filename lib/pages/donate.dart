@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DonatePage extends StatefulWidget {
@@ -37,6 +38,15 @@ class _DonatePageState extends State<DonatePage> {
   Future<void> _submitForm() async {
     if (_formKey.currentState!.validate()) {
       await _uploadImages();
+
+      // Retrieve the currently signed-in user's information
+      final User? user = FirebaseAuth.instance.currentUser;
+      final DocumentSnapshot userData = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user!.uid)
+          .get();
+
+      // Save the donor's information
       FirebaseFirestore.instance.collection('transactions').add({
         'name': _nameController.text,
         'quantity': _quantityController.text,
@@ -44,7 +54,11 @@ class _DonatePageState extends State<DonatePage> {
         'imageUrls': _imageUrls,
         'completed': false,
         'timestamp': FieldValue.serverTimestamp(),
+        'donorName': userData['name'],
+        'donorEmail': userData['email'],
+        'donorPhone': userData['phone'],
       });
+
       Navigator.pop(context);
     }
   }
@@ -62,7 +76,19 @@ class _DonatePageState extends State<DonatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Donate'),
+        backgroundColor: Colors.orange,
+        automaticallyImplyLeading: true,
+        title: Row(
+          children: const [
+            SizedBox(
+              width: 100,
+            ),
+            Text(
+              'Donate',
+              style: TextStyle(fontWeight: FontWeight.w400),
+            ),
+          ],
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -72,8 +98,11 @@ class _DonatePageState extends State<DonatePage> {
             children: [
               TextFormField(
                 controller: _nameController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Name',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -86,8 +115,11 @@ class _DonatePageState extends State<DonatePage> {
               TextFormField(
                 maxLines: 4,
                 controller: _descController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Description',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -99,8 +131,11 @@ class _DonatePageState extends State<DonatePage> {
               const SizedBox(height: 10),
               TextFormField(
                 controller: _quantityController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Servings',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
                 ),
                 keyboardType: TextInputType.number,
                 validator: (value) {
@@ -113,8 +148,11 @@ class _DonatePageState extends State<DonatePage> {
               const SizedBox(height: 10),
               TextFormField(
                 controller: _locationController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Pickup Location',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -126,6 +164,10 @@ class _DonatePageState extends State<DonatePage> {
               const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: _pickImage,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.amber,
+                  fixedSize: const Size(300, 50),
+                ),
                 child: const Text('Choose Images'),
               ),
               const SizedBox(height: 10),
@@ -149,6 +191,10 @@ class _DonatePageState extends State<DonatePage> {
               ),
               const SizedBox(height: 10),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.amber,
+                  fixedSize: const Size(300, 50),
+                ),
                 onPressed: _submitForm,
                 child: const Text('Submit'),
               ),

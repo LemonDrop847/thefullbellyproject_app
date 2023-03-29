@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:thefullbellyproject_app/pages/onboarding.dart';
-
 import 'profile.dart';
 
 class SignInPage extends StatefulWidget {
@@ -55,7 +53,22 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign In'),
+        backgroundColor: Colors.orange,
+        automaticallyImplyLeading: true,
+        title: Row(
+          children: const [
+            SizedBox(
+              width: 100,
+            ),
+            Text(
+              'Sign In',
+              style: TextStyle(
+                fontFamily: 'Itim',
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -96,7 +109,10 @@ class _SignInPageState extends State<SignInPage> {
                       fixedSize: const Size(300, 50),
                     ),
                     onPressed: _handleEmailSignIn,
-                    child: const Text('Sign In with Email and Password'),
+                    child: const Text(
+                      'Sign In with Email and Password',
+                      style: TextStyle(fontFamily: 'Product Sans'),
+                    ),
                   ),
                   const SizedBox(height: 10),
                   Row(
@@ -107,7 +123,8 @@ class _SignInPageState extends State<SignInPage> {
                         height: 40,
                         width: 40,
                         child: FloatingActionButton(
-                          backgroundColor: Color.fromARGB(255, 226, 225, 225),
+                          backgroundColor:
+                              const Color.fromARGB(255, 226, 225, 225),
                           elevation: 0.5,
                           onPressed: _handleGoogleSignIn,
                           child: Image.asset('assets/images/googlelogo.png'),

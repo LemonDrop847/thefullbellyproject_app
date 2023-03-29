@@ -67,7 +67,9 @@ class _FeedbackPageState extends State<FeedbackPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Feedback'),
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.orange,
+        title: const Center(child: Text('Feedback')),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -75,36 +77,13 @@ class _FeedbackPageState extends State<FeedbackPage> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: TextField(
+                minLines: 10,
                 controller: _descriptionController,
                 decoration: const InputDecoration(
                   labelText: 'Description',
                   border: OutlineInputBorder(),
                 ),
                 maxLines: null,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: _isUploading ? null : _uploadImage,
-                      child: _isUploading
-                          ? const CircularProgressIndicator()
-                          : const Text('Upload Image'),
-                    ),
-                  ),
-                  const SizedBox(width: 16.0),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: _isUploading ? null : _submit,
-                      child: _isUploading
-                          ? const CircularProgressIndicator()
-                          : const Text('Submit'),
-                    ),
-                  ),
-                ],
               ),
             ),
             if (_imageUrls.isNotEmpty)
@@ -122,6 +101,34 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   },
                 ),
               ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.amber,
+                      fixedSize: const Size(300, 50),
+                    ),
+                    onPressed: _isUploading ? null : _uploadImage,
+                    child: _isUploading
+                        ? const CircularProgressIndicator()
+                        : const Text('Upload Images'),
+                  ),
+                  const SizedBox(height: 16.0),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      fixedSize: const Size(300, 50),
+                    ),
+                    onPressed: _isUploading ? null : _submit,
+                    child: _isUploading
+                        ? const CircularProgressIndicator()
+                        : const Text('Submit'),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
