@@ -49,6 +49,7 @@ class _DonatePageState extends State<DonatePage> {
       // Save the donor's information
       FirebaseFirestore.instance.collection('transactions').add({
         'name': _nameController.text,
+        'description': _descController.text,
         'quantity': _quantityController.text,
         'location': _locationController.text,
         'imageUrls': _imageUrls,
@@ -99,14 +100,14 @@ class _DonatePageState extends State<DonatePage> {
               TextFormField(
                 controller: _nameController,
                 decoration: InputDecoration(
-                  labelText: 'Name',
+                  labelText: 'Item Name',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter your name';
+                    return 'Please enter item name';
                   }
                   return null;
                 },

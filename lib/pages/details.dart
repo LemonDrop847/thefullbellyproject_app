@@ -35,7 +35,7 @@ class DetailPage extends StatelessWidget {
           final donorName = transactionData['donorName'] as String;
           final donorPhone = transactionData['donorPhone'] as String;
           final donorEmail = transactionData['donorEmail'] as String;
-          final servings = transactionData['quantity'] as int;
+          final servings = transactionData['quantity'] as String;
 
           return Container(
             padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
