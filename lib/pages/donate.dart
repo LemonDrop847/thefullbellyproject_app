@@ -15,11 +15,12 @@ class DonatePage extends StatefulWidget {
 class _DonatePageState extends State<DonatePage> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
+  final _descController = TextEditingController();
   final _quantityController = TextEditingController();
   final _locationController = TextEditingController();
   final _picker = ImagePicker();
-  List<File> _imageFiles = [];
-  List<String> _imageUrls = [];
+  final List<File> _imageFiles = [];
+  final List<String> _imageUrls = [];
 
   Future<void> _uploadImages() async {
     for (var imageFile in _imageFiles) {
@@ -83,14 +84,28 @@ class _DonatePageState extends State<DonatePage> {
               ),
               const SizedBox(height: 10),
               TextFormField(
+                maxLines: 4,
+                controller: _descController,
+                decoration: const InputDecoration(
+                  labelText: 'Description',
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter description';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 10),
+              TextFormField(
                 controller: _quantityController,
                 decoration: const InputDecoration(
-                  labelText: 'Quantity',
+                  labelText: 'Servings',
                 ),
                 keyboardType: TextInputType.number,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter the quantity';
+                    return 'Please enter the number of Servings';
                   }
                   return null;
                 },
@@ -99,11 +114,11 @@ class _DonatePageState extends State<DonatePage> {
               TextFormField(
                 controller: _locationController,
                 decoration: const InputDecoration(
-                  labelText: 'Location',
+                  labelText: 'Pickup Location',
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter the location';
+                    return 'Please enter the Pickup Location';
                   }
                   return null;
                 },

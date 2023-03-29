@@ -57,36 +57,68 @@ class _SignInPageState extends State<SignInPage> {
       appBar: AppBar(
         title: const Text('Sign In'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            TextField(
-              controller: _emailController,
-              decoration: const InputDecoration(
-                labelText: 'Email',
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  TextField(
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                      labelText: 'Email',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  TextField(
+                    controller: _passwordController,
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    obscureText: true,
+                  ),
+                  const SizedBox(height: 10),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.amber,
+                      fixedSize: const Size(300, 50),
+                    ),
+                    onPressed: _handleEmailSignIn,
+                    child: const Text('Sign In with Email and Password'),
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('Or Sign In With: '),
+                      SizedBox(
+                        height: 40,
+                        width: 40,
+                        child: FloatingActionButton(
+                          backgroundColor: Color.fromARGB(255, 226, 225, 225),
+                          elevation: 0.5,
+                          onPressed: _handleGoogleSignIn,
+                          child: Image.asset('assets/images/googlelogo.png'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 10),
-            TextField(
-              controller: _passwordController,
-              decoration: const InputDecoration(
-                labelText: 'Password',
-              ),
-              obscureText: true,
-            ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: _handleEmailSignIn,
-              child: const Text('Sign In with Email and Password'),
-            ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: _handleGoogleSignIn,
-              child: const Text('Sign In with Google'),
-            ),
-          ],
+          ),
         ),
       ),
     );

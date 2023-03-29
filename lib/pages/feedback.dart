@@ -9,7 +9,7 @@ class FeedbackPage extends StatefulWidget {
   static const String id = 'Feedback';
   final String documentId;
 
-  FeedbackPage({required this.documentId});
+  FeedbackPage({super.key, required this.documentId});
 
   @override
   _FeedbackPageState createState() => _FeedbackPageState();

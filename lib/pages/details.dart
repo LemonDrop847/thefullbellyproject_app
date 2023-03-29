@@ -8,7 +8,7 @@ class DetailPage extends StatelessWidget {
 
   final String documentId;
 
-  DetailPage({required this.documentId});
+  DetailPage({super.key, required this.documentId});
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 

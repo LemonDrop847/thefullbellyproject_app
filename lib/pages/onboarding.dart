@@ -47,31 +47,48 @@ class OnboardingPageState extends State<OnboardingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'Select your role:',
-              style: TextStyle(fontSize: 20),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => _handleRoleSelection('donor'),
-              child: const Text('Donor'),
-            ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () => _handleRoleSelection('ngo_agent'),
-              child: const Text('NGO Agent'),
-            ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () => {Navigator.pushNamed(context, SignInPage.id)},
-              child: const Text('Already an user? Sign In'),
-            ),
-          ],
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          const SizedBox(
+            height: 100,
+          ),
+          Column(
+            children: [
+              const Text(
+                'Select your role:',
+                style: TextStyle(fontSize: 20),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SizedBox(
+                    height: 100,
+                    width: 100,
+                    child: FloatingActionButton(
+                      onPressed: () => _handleRoleSelection('donor'),
+                      child: const Text('Donor'),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 100,
+                    width: 100,
+                    child: FloatingActionButton(
+                      onPressed: () => _handleRoleSelection('ngo_agent'),
+                      child: const Text('NGO Agent'),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 100),
+          TextButton(
+            onPressed: () => {Navigator.pushNamed(context, SignInPage.id)},
+            child: const Text('Already an user? Sign In'),
+          ),
+        ],
       ),
     );
   }
