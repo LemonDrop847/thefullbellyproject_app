@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'profile.dart';
+import 'dashboard.dart';
 
 class SignUpNGOPage extends StatefulWidget {
   static const String id = 'signUpNgo';
@@ -77,15 +77,28 @@ class SignUpNGOPageState extends State<SignUpNGOPage> {
   }
 
   void _handleSignUpSuccess() {
-    Navigator.pushNamed(context, ProfilePage.id);
+    Navigator.pushNamed(context, DashboardPage.id);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text('Sign Up as a NGO Agent'),
+        backgroundColor: Colors.orange,
+        automaticallyImplyLeading: true,
+        title: Row(
+          children: const [
+            SizedBox(
+              width: 40,
+            ),
+            Text(
+              'Sign Up as a NGO Agent',
+              style: TextStyle(
+                fontFamily: 'Itim',
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ],
         ),
       ),
       body: SingleChildScrollView(
@@ -162,6 +175,7 @@ class SignUpNGOPageState extends State<SignUpNGOPage> {
                     child: const Text(
                       'Sign Up',
                       style: TextStyle(
+                        fontFamily: 'Product Sans',
                         fontWeight: FontWeight.w500,
                       ),
                     ),

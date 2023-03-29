@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:thefullbellyproject_app/pages/profile.dart';
 
 import 'details.dart';
 
@@ -17,7 +18,13 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dashboard'),
+        backgroundColor: Colors.orange,
+        automaticallyImplyLeading: false,
+        title: const Center(
+            child: Text(
+          'Dashboard',
+          style: TextStyle(fontFamily: 'Itim', fontSize: 20),
+        )),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: _firestore
@@ -35,20 +42,76 @@ class _DashboardPageState extends State<DashboardPage> {
               final document = documents[index];
               final name = document['name'];
               final location = document['location'];
-              final time = document['timestamp'].toDate();
+              final donorName = document['donorName'];
+              final quantity = document['quantity'].toString();
               final docId = document.id;
               final image = document['imageUrls'][0].toString();
               return Card(
+                elevation: 3,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(40.0),
+                  side: const BorderSide(color: Colors.black, width: 1),
+                ),
                 child: ListTile(
-                  title: Image(
-                    image: NetworkImage(image),
-                    height: 50,
-                    width: 50,
+                  title: Row(
+                    children: [
+                      Container(
+                        height: 200,
+                        width: 100,
+                        margin: const EdgeInsets.all(10),
+                        child: Image(
+                          image: NetworkImage(image),
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Donor: $donorName',
+                            style: const TextStyle(
+                              fontFamily: 'Product Sans',
+                              fontSize: 20,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          const Text(
+                            "Details: ",
+                            style: TextStyle(
+                              fontFamily: 'Product Sans',
+                              fontSize: 18,
+                            ),
+                          ),
+                          Text(
+                            'Item: $name',
+                            style: const TextStyle(
+                              fontFamily: 'Avenir',
+                              fontSize: 16,
+                            ),
+                          ),
+                          Text(
+                            'Location: $location',
+                            style: const TextStyle(
+                              fontFamily: 'Avenir',
+                              fontSize: 16,
+                            ),
+                          ),
+                          Text(
+                            'Servings: $quantity',
+                            style: const TextStyle(
+                              fontFamily: 'Avenir',
+                              fontSize: 16,
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
                   ),
-                  subtitle: Column(
-                    children: [Text(name), Text(location)],
-                  ),
-                  trailing: Text(time.toString()),
+                  // trailing: Text(time.toString()),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -64,6 +127,23 @@ class _DashboardPageState extends State<DashboardPage> {
             },
           );
         },
+      ),
+      bottomNavigationBar: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: SizedBox(
+              height: 70,
+              width: 70,
+              child: FloatingActionButton(
+                backgroundColor: Colors.orange,
+                onPressed: () => Navigator.pushNamed(context, ProfilePage.id),
+                child: const Icon(Icons.person),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

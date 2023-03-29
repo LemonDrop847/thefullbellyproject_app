@@ -75,7 +75,19 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Edit Profile'),
+        backgroundColor: Colors.orange,
+        automaticallyImplyLeading: true,
+        title: Row(
+          children: const [
+            SizedBox(
+              width: 100,
+            ),
+            Text(
+              'Edit Profile',
+              style: TextStyle(fontFamily: 'Itim', fontWeight: FontWeight.w400),
+            ),
+          ],
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -84,35 +96,54 @@ class _EditProfilePageState extends State<EditProfilePage> {
           children: [
             TextField(
               controller: _nameController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Name',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
             ),
             const SizedBox(height: 10),
             TextField(
               controller: _locationController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Location',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
             ),
             const SizedBox(height: 10),
             TextField(
               controller: _phoneController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Phone Number',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
             ),
             const SizedBox(height: 10),
             TextField(
               controller: _emailController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Email',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
             ),
             const SizedBox(height: 10),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.amber,
+                fixedSize: const Size(300, 50),
+              ),
               onPressed: _updateUserData,
-              child: const Text('Save Changes'),
+              child: const Text(
+                'Save Changes',
+                style: TextStyle(fontFamily: 'Product Sans'),
+              ),
             ),
           ],
         ),

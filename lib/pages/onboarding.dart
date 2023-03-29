@@ -44,52 +44,171 @@ class OnboardingPageState extends State<OnboardingPage> {
     }
   }
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          const SizedBox(
-            height: 100,
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(240.0),
+          child: AppBar(
+            toolbarHeight: 200,
+            title: const Text(
+              'Full Belly Project',
+              style: TextStyle(
+                fontFamily: 'Satisfy',
+                color: Colors.black,
+                fontSize: 45,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            centerTitle: true,
+            backgroundColor: Colors.orangeAccent,
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(200),
+                    bottomRight: Radius.circular(0))),
+            elevation: 0,
           ),
-          Column(
+        ),
+        body: Center(
+            child: Padding(
+          padding: const EdgeInsets.all(80.0),
+          child: Column(
             children: [
               const Text(
-                'Select your role:',
-                style: TextStyle(fontSize: 20),
+                'Join us and help the needy',
+                style: TextStyle(
+                  fontFamily: 'Avenir',
+                  fontSize: 15,
+                ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(
+                height: 20,
+              ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 100,
-                    width: 100,
-                    child: FloatingActionButton(
-                      onPressed: () => _handleRoleSelection('donor'),
-                      child: const Text('Donor'),
-                    ),
+                  Column(
+                    children: [
+                      const Text(
+                        'NGO Agent',
+                        style: TextStyle(
+                          fontFamily: 'Product Sans',
+                          fontSize: 15,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      InkWell(
+                        onTap: () => _handleRoleSelection('ngo_agent'),
+                        child: Image.asset(
+                          'assets/images/delivery.png',
+                          scale: 2,
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(
-                    height: 100,
-                    width: 100,
-                    child: FloatingActionButton(
-                      onPressed: () => _handleRoleSelection('ngo_agent'),
-                      child: const Text('NGO Agent'),
-                    ),
+                  const SizedBox(
+                    width: 24,
+                  ),
+                  Column(
+                    children: [
+                      const Text(
+                        'Donor',
+                        style: TextStyle(
+                          fontFamily: 'Product Sans',
+                          fontSize: 15,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      InkWell(
+                        onTap: () => _handleRoleSelection('donor'),
+                        child: Image.asset(
+                          'assets/images/profile.png',
+                          scale: 2,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
             ],
           ),
-          const SizedBox(height: 100),
-          TextButton(
-            onPressed: () => {Navigator.pushNamed(context, SignInPage.id)},
-            child: const Text('Already an user? Sign In'),
+        )),
+        bottomNavigationBar: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(40),
+            topRight: Radius.circular(40),
           ),
-        ],
-      ),
-    );
+          child: InkWell(
+            onTap: () => {Navigator.pushNamed(context, SignInPage.id)},
+            child: Container(
+              color: Colors.amber,
+              height: 100,
+              width: 100,
+              child: const Align(
+                child: Text(
+                  'I am already a user',
+                  style: TextStyle(
+                    fontFamily: 'Avenir',
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ));
   }
 }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Column(
+//         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//         children: [
+//           const SizedBox(
+//             height: 100,
+//           ),
+//           Column(
+//             children: [
+//               const Text(
+//                 'Select your role:',
+//                 style: TextStyle(fontSize: 20),
+//               ),
+//               const SizedBox(height: 20),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+//                 children: [
+//                   SizedBox(
+//                     height: 100,
+//                     width: 100,
+//                     child: FloatingActionButton(
+//                       onPressed: () => _handleRoleSelection('donor'),
+//                       child: const Text('Donor'),
+//                     ),
+//                   ),
+//                   SizedBox(
+//                     height: 100,
+//                     width: 100,
+//                     child: FloatingActionButton(
+//                       onPressed: () => _handleRoleSelection('ngo_agent'),
+//                       child: const Text('NGO Agent'),
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ],
+//           ),
+//           const SizedBox(height: 100),
+//           TextButton(
+//             onPressed: () => {Navigator.pushNamed(context, SignInPage.id)},
+//             child: const Text('Already an user? Sign In'),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }

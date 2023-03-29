@@ -6,6 +6,8 @@ import 'package:thefullbellyproject_app/pages/profile.dart';
 
 class SignUpDonorPage extends StatefulWidget {
   static const String id = 'signUpDonor';
+
+  const SignUpDonorPage({super.key});
   @override
   SignUpDonorPageState createState() => SignUpDonorPageState();
 }
@@ -84,8 +86,21 @@ class SignUpDonorPageState extends State<SignUpDonorPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text('Sign Up as a Donor'),
+        backgroundColor: Colors.orange,
+        automaticallyImplyLeading: true,
+        title: Row(
+          children: const [
+            SizedBox(
+              width: 50,
+            ),
+            Text(
+              'Sign Up as a Donor',
+              style: TextStyle(
+                fontFamily: 'Itim',
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ],
         ),
       ),
       body: SingleChildScrollView(
@@ -162,6 +177,7 @@ class SignUpDonorPageState extends State<SignUpDonorPage> {
                     child: const Text(
                       'Sign Up',
                       style: TextStyle(
+                        fontFamily: 'Product Sans',
                         fontWeight: FontWeight.w500,
                       ),
                     ),

@@ -24,12 +24,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: const OnboardingPage(),
+      home: const OnboardingPage(),
       initialRoute: OnboardingPage.id,
       routes: {
         OnboardingPage.id: (context) => const OnboardingPage(),
         SignUpNGOPage.id: (context) => SignUpNGOPage(),
-        SignUpDonorPage.id: (context) => SignUpDonorPage(),
+        SignUpDonorPage.id: (context) => const SignUpDonorPage(),
         SignInPage.id: (context) => SignInPage(),
         ProfilePage.id: (context) => ProfilePage(),
         EditProfilePage.id: (context) => EditProfilePage(),
