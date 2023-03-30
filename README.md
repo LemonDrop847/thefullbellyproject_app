@@ -37,7 +37,7 @@ Click :point_up_2: to download the App!
 <img src="https://i.postimg.cc/KY0by91C/goal-11-480.png" width="200px"> <img src="https://i.postimg.cc/CLCLQs4p/goal-12-480.png" width="200px">
 
 # APP Interface
-<img src="https://i.postimg.cc/Y93zRsCD/Screenshot-20230330-131827.jpg" width="240px"> <img src="https://i.postimg.cc/RVXfYt9h/Screenshot-20230330-131857.jpg" width="240px"> <img src="https://i.postimg.cc/7Z5FGgZT/Screenshot-20230330-132044.jpg" width="240px"> <img src="https://i.postimg.cc/fT97VyhR/Screenshot-20230330-132122.jpg" width="240px">
+<img src="https://i.postimg.cc/Y93zRsCD/Screenshot-20230330-131827.jpg" width="220px"> <img src="https://i.postimg.cc/RVXfYt9h/Screenshot-20230330-131857.jpg" width="220px"> <img src="https://i.postimg.cc/7Z5FGgZT/Screenshot-20230330-132044.jpg" width="220px"> <img src="https://i.postimg.cc/fT97VyhR/Screenshot-20230330-132122.jpg" width="220px">
 
 
 
